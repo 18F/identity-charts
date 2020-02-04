@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>login.gov charts</title>
+    <meta http-equiv="refresh" content="60;{{{host}}}" />
+  </head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/authentications.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+      REPORTS={{{reports}}}
+    </script>
+
+    <!-- Authentications today -->
+    <div id="authentications_today_by_hour_container">
+      <h1>Sign ins today</h1>
+      <div id="authentications_today_by_hour_chart">
+        <canvas id="authentications_today_by_hour"></canvas>
+      </div>
+    </div>
+
+    <!-- Authentications this week -->
+    <div id="authentications_this_week_by_hour_container">
+      <h1>Sign ins this week</h1>
+      <div id="authentications_this_week_by_hour_chart">
+        <canvas id="authentications_this_week_by_hour"></canvas>
+      </div>
+    </div>
+
+    <!-- Authentications today -->
+    <div id="authentications_today_container">
+      <h1 style="position:relative;top:20vh;" id="authentications_today"></h1>
+    </div>
+
+    <!-- Brand -->
+    <div class="brand-footer">
+      <img src="/img/brand.svg" />
+    </div>
+  </body>
+  <script src="/scripts/authentications.js"></script>
+</html>

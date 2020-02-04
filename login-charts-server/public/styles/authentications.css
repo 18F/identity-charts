@@ -1,0 +1,71 @@
+/*
+  Sign ins today chart
+*/
+#authentications_today_by_hour_container {
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  height: 44vh;
+  width: 98vw;
+}
+
+#authentications_today_by_hour_container h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 7vh;
+  line-height: 7vh;
+  width: 98vw;
+}
+
+#authentications_today_by_hour_chart {
+  position: absolute;
+  top: 7vh;
+  left: 0;
+  height: 37vh;
+  width: 98vw;
+}
+
+/*
+  Sign ins this week chart
+*/
+#authentications_this_week_by_hour_container {
+  position: absolute;
+  top: 45vh;
+  left: 1vw;
+  height: 44vh;
+  width: 49vw;
+}
+
+#authentications_this_week_by_hour_container h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 7vh;
+  line-height: 7vh;
+  width: 49vw;
+}
+
+#authentications_this_week_by_hour_chart {
+  position: absolute;
+  top: 7vh;
+  left: 0;
+  height: 37vh;
+  width: 49vw;
+}
+
+/*
+  Sign ins today ticker
+*/
+#authentications_today_container {
+  position: absolute;
+  top: 45vh;
+  left: 50vw;
+  width: 49vw;
+  height: 44vh;
+}
+
+#authentications_today {
+  position: relative;
+  top: 18vh;
+}

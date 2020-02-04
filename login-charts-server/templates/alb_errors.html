@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <title>login.gov charts</title>
+    <meta http-equiv="refresh" content="60;{{{host}}}" />
+  </head>
+  <body>
+    <link
+      href="https://fonts.googleapis.com/css?family=Merriweather&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles/base.css" />
+    <link rel="stylesheet" href="/styles/alb_errors.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+      REPORTS={{{reports}}}
+    </script>
+
+    <!-- ALB Errors today -->
+    <div id="alb_errors_container">
+      <h1>Errors in the past 24 hours</h1>
+      <div id="alb_errors_chart">
+        <canvas id="alb_errors"></canvas>
+      </div>
+    </div>
+
+    <!-- Brand -->
+    <div class="brand-footer">
+      <img src="/img/brand.svg" />
+    </div>
+  </body>
+  <script src="/scripts/alb_errors.js"></script>
+</html>
