@@ -1,0 +1,46 @@
+10-10-2019 <= date user starts doc auth < 10-24-2019
+
+                step  users %users dropoff
+             welcome   2287   100%      5%
+       upload_option   2179    95%     13%
+         front_image   1895    83%     15%
+          back_image   1620    71%     20%
+                 ssn   1294    57%      0%
+         verify_info   1293    57%     15%
+         doc_success   1099    48%      0%
+               phone   1099    48%     21%
+             encrypt    873    38%      3%
+        personal_key    849    37%      2%
+            verified    832    36%      0%
+
+
+10-24-2019 <= date user starts doc auth < 11-07-2019
+
+                step  users %users dropoff
+             welcome   2258   100%      5%
+       upload_option   2145    95%     12%
+         front_image   1887    84%      7%
+          back_image   1760    78%     24%
+                 ssn   1333    59%      0%
+         verify_info   1332    59%     15%
+         doc_success   1134    50%      0%
+               phone   1133    50%     19%
+             encrypt    919    41%      2%
+        personal_key    901    40%      5%
+            verified    853    38%      0%
+
+
+11-07-2019 <= date user starts doc auth < 11-21-2019
+
+                step  users %users dropoff
+             welcome   2423   100%      9%
+       upload_option   2195    91%     15%
+         front_image   1863    77%      8%
+          back_image   1714    71%     26%
+                 ssn   1264    52%      0%
+         verify_info   1260    52%     15%
+         doc_success   1066    44%      0%
+               phone   1066    44%      5%
+             encrypt   1009    42%      2%
+        personal_key    990    41%      1%
+            verified    983    41%      0%

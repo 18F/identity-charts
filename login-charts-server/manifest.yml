@@ -1,6 +1,0 @@
-name: login-charts-server
-buildpack: nodejs_buildpack
-command: npm start
-services:
-  - login-charts-server-db
-stack: cflinuxfs3
