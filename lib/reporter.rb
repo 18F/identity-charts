@@ -6,10 +6,12 @@ require_relative './reporter/alb_errors_report_builder'
 require_relative './reporter/authentications_report_builder'
 require_relative './reporter/doc_auth_dropoff_report_builder'
 
+TIME_ZONE = ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
+
 module Reporter
   def self.start_reporting
     Thread.new do
-      Time.zone = ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
+      Time.zone = TIME_ZONE
 
       loop do
         run_reports
