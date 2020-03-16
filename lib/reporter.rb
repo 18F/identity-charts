@@ -11,8 +11,6 @@ TIME_ZONE = ActiveSupport::TimeZone.new('Eastern Time (US & Canada)')
 module Reporter
   def self.start_reporting
     Thread.new do
-      Time.zone = TIME_ZONE
-
       loop do
         run_reports
       rescue StandardError => error

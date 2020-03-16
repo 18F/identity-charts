@@ -27,7 +27,7 @@ module Reporter
     def authentications_this_week_by_hour_hash
       data = empty_1_hour_period_hash_for_week
       cloudwatch_datapoints.each do |datum|
-        key = datum.timestamp.in_time_zone(Time.zone).strftime('%Y-%m-%d %H:%M')
+        key = datum.timestamp.in_time_zone(TIME_ZONE).strftime('%Y-%m-%d %H:%M')
         next if data[key].nil?
         data[key] = datum.sum
       end
@@ -47,7 +47,7 @@ module Reporter
     def authentications_today_by_hour_hash
       data = empty_1_hour_period_hash_for_today
       cloudwatch_datapoints_for_today.each do |datum|
-        key = datum.timestamp.in_time_zone(Time.zone).strftime('%H:%M')
+        key = datum.timestamp.in_time_zone(TIME_ZONE).strftime('%H:%M')
         next if data[key].nil?
         data[key] = datum.sum
       end
@@ -69,7 +69,7 @@ module Reporter
         namespace: 'Authentication',
         metric_name: 'user-marked-authenticated',
         start_time: one_week_ago,
-        end_time: Time.zone.now,
+        end_time: TIME_ZONE.now,
         period: 3600,
         statistics: ['Sum'],
       ).datapoints
@@ -100,7 +100,7 @@ module Reporter
     end
 
     def start_of_day
-      @start_of_day ||= Time.zone.today.beginning_of_day
+      @start_of_day ||= TIME_ZONE.today.beginning_of_day
     end
 
     def one_week_ago

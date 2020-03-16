@@ -10,8 +10,6 @@ require_relative '../lib/reporter'
 
 Dotenv.load('.env.test')
 
-Time.zone = TIME_ZONE
-
 ## Require all rb files in spec/support
 Dir[File.join(__dir__, 'support/**/*.rb')].sort.each { |f| require f }
 
