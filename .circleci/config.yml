@@ -1,0 +1,38 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.6-node
+        environment:
+          BUNDLER_VERSION: 2.1.4
+    working_directory: ~/identity-charts
+    steps:
+      - checkout
+      - run: gem update --system
+      - run: gem install bundler
+      # Load installed gems from cache if possible, bundle install then save cache
+      # Multiple caches are used to increase the chance of a cache hit
+      # when lock file changes, use increasingly general patterns to restore cache
+      - restore_cache:
+          keys:
+            - gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+            - gem-cache-v1-{{ arch }}
+            - gem-cache-v1
+      - run: bundle install --path vendor/bundle
+      - save_cache:
+          key: gem-cache-v1-{{ arch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+      - run:
+          name: Test Setup
+          command: |
+            cp .env.example .env
+            bundle exec rake db:setup --trace
+      - run:
+          name: Run rspec
+          command: bundle exec rspec `pwd`/spec/
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
