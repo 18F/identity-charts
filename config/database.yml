@@ -9,5 +9,6 @@ test:
   encoding: unicode
   database: login-charts_test
   pool: 2
+  username: <%= ENV['POSTGRES_USER'] %>
 
 # The production db will pick up the config from $DATABASE_URL in production
