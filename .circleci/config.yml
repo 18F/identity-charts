@@ -34,7 +34,7 @@ jobs:
           name: Test Setup
           command: |
             cp .env.example .env
-            bundle exec rake db:setup --trace
+            bundle exec rake db:create db:migrate --trace
       - run:
           name: Run rspec
           command: bundle exec rspec `pwd`/spec/
