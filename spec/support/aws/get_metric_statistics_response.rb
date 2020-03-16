@@ -1,0 +1,1 @@
+GetMetricStatisticsResponse = Struct.new(:datapoints)

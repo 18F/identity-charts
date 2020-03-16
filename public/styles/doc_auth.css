@@ -1,0 +1,25 @@
+#doc_auth_drop_off_container {
+  position: absolute;
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  height: 88vh;
+  width: 98vw;
+}
+
+#doc_auth_drop_off h1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 7vh;
+  line-height: 7vh;
+  width: 98vw;
+}
+
+#doc_auth_drop_off_chart {
+  position: absolute;
+  top: 7vh;
+  left: 0;
+  height: 81vh;
+  width: 98vw;
+}

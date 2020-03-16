@@ -1,0 +1,13 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: login-charts_development
+  pool: 2
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: login-charts_test
+  pool: 2
+
+# The production db will pick up the config from $DATABASE_URL in production
