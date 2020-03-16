@@ -1,7 +1,7 @@
 describe Reporter::DocAuthDropoffReportBuilder do
   describe '#reports' do
     let(:s3_client) { instance_double(Aws::S3::Client) }
-    let(:raw_drop_off_data) { File.read('spec/support/fixtures/doc-auth-drop-offs-report.json') }
+    let(:raw_drop_off_data) { File.read('spec/support/fixtures/doc-auth-drop-offs-report.data') }
     let(:s3_client_response) do
       response = double
       allow(response).to receive(:body).and_return(StringIO.new(raw_drop_off_data))
