@@ -42,10 +42,10 @@ describe Reporter::AuthenticationsReportBuilder do
       expect(report[:name]).to eq(:authentications_this_week_by_hour)
       expect(data.length).to eq(167)
       expect(data.first[:label]).to eq(
-        report_start_time.in_time_zone(Time.zone).strftime('%Y-%m-%d %H:%M'),
+        report_start_time.in_time_zone(TIME_ZONE).strftime('%Y-%m-%d %H:%M'),
       )
       expect(data.last[:label]).to eq(
-        (report_end_time - 3600).in_time_zone(Time.zone).strftime('%Y-%m-%d %H:%M'),
+        (report_end_time - 3600).in_time_zone(TIME_ZONE).strftime('%Y-%m-%d %H:%M'),
       )
 
       stat1 = get_weely_report_datapoint_for_timestamp(
@@ -97,10 +97,10 @@ describe Reporter::AuthenticationsReportBuilder do
   end
 
   def get_weely_report_datapoint_for_timestamp(timestamp:, data:)
-    data.find { |d| d[:label] == timestamp.in_time_zone(Time.zone).strftime('%Y-%m-%d %H:%M') }
+    data.find { |d| d[:label] == timestamp.in_time_zone(TIME_ZONE).strftime('%Y-%m-%d %H:%M') }
   end
 
   def get_daily_report_datapoint_for_timestamp(timestamp:, data:)
-    data.find { |d| d[:label] == timestamp.in_time_zone(Time.zone).strftime('%H:%M') }
+    data.find { |d| d[:label] == timestamp.in_time_zone(TIME_ZONE).strftime('%H:%M') }
   end
 end

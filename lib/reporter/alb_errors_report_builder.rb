@@ -14,7 +14,7 @@ module Reporter
     def alb_4xx_errors
       data = empty_5_minute_period_hash
       alb_4xx_datapoints.each do |datum|
-        data[datum.timestamp.in_time_zone(Time.zone).strftime('%H:%M')] = datum.sum
+        data[datum.timestamp.in_time_zone(TIME_ZONE).strftime('%H:%M')] = datum.sum
       end
       data.keys.map do |label|
         {
@@ -27,7 +27,7 @@ module Reporter
     def alb_5xx_errors
       data = empty_5_minute_period_hash
       alb_5xx_datapoints.each do |datum|
-        data[datum.timestamp.in_time_zone(Time.zone).strftime('%H:%M')] = datum.sum
+        data[datum.timestamp.in_time_zone(TIME_ZONE).strftime('%H:%M')] = datum.sum
       end
       data.keys.map do |label|
         {
@@ -49,7 +49,7 @@ module Reporter
           },
         ],
         start_time: twenty_four_hours_ago.dup.to_time,
-        end_time: Time.zone.now.to_time,
+        end_time: TIME_ZONE.now.to_time,
         period: 300,
         statistics: ['Sum'],
       ).datapoints.sort_by(&:timestamp)
@@ -68,7 +68,7 @@ module Reporter
           },
         ],
         start_time: twenty_four_hours_ago.dup,
-        end_time: Time.zone.now,
+        end_time: TIME_ZONE.now,
         period: 300,
         statistics: ['Sum'],
       ).datapoints.sort_by(&:timestamp)
@@ -91,10 +91,10 @@ module Reporter
 
     def twenty_four_hours_ago
       @twenty_four_hours_ago ||= begin
-        time = 24.hours.ago
+        time = (TIME_ZONE.now - 24.hours)
         # We need to round to 5 minute increments since epoch
         # to get the right start date for the cloudwatch metrics
-        Time.zone.at(time.to_i - (time.to_i % 300))
+        TIME_ZONE.at(time.to_i - (time.to_i % 300))
       end
     end
   end
