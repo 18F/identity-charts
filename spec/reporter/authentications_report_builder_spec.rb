@@ -1,8 +1,8 @@
 describe Reporter::AuthenticationsReportBuilder do
   # These reports are a pisces, just like me :)
-  let(:current_time) { Time.new(1993, 3, 18, 12, 0, 0, 14_400) }
-  let(:report_start_time) { Time.new(1993, 3, 11, 12, 0, 0, 14_400) }
-  let(:report_end_time) { Time.new(1993, 3, 18, 11, 0, 0, 14_400) }
+  let(:current_time) { Time.parse('1993-03-18T12:00:00-04:00') }
+  let(:report_start_time) { Time.parse('1993-03-11T12:00:00-04:00') }
+  let(:report_end_time) { Time.parse('1993-03-18T11:00:00-04:00') }
 
   around do |example|
     Timecop.freeze current_time do
@@ -14,10 +14,10 @@ describe Reporter::AuthenticationsReportBuilder do
   let(:get_metric_statistics_datapoints) do
     GetMetricStatisticsResponse.new(
       [
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 12, 20, 0, 0, 14_400), 10),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 14, 13, 0, 0, 14_400), 20),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 18, 9, 0, 0, 14_400), 30),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 18, 10, 0, 0, 14_400), 40),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-12T20:00:00-04:00'), 10),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-14T13:00:00-04:00'), 20),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-18T09:00:00-04:00'), 30),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-18T10:00:00-04:00'), 40),
       ],
     )
   end
@@ -49,13 +49,13 @@ describe Reporter::AuthenticationsReportBuilder do
       )
 
       stat1 = get_weely_report_datapoint_for_timestamp(
-        timestamp: Time.new(1993, 3, 12, 20, 0, 0, 14_400), data: data,
+        timestamp: Time.parse('1993-03-12T20:00:00-04:00'), data: data,
       )
       stat2 = get_weely_report_datapoint_for_timestamp(
-        timestamp: Time.new(1993, 3, 14, 13, 0, 0, 14_400), data: data,
+        timestamp: Time.parse('1993-03-14T13:00:00-04:00'), data: data,
       )
       stat3 = get_weely_report_datapoint_for_timestamp(
-        timestamp: Time.new(1993, 3, 18, 9, 0, 0, 14_400), data: data,
+        timestamp: Time.parse('1993-03-18T09:00:00-04:00'), data: data,
       )
 
       expect(stat1).to_not eq(nil)
@@ -76,10 +76,10 @@ describe Reporter::AuthenticationsReportBuilder do
       expect(data.last[:label]).to eq('23:00')
 
       stat1 = get_daily_report_datapoint_for_timestamp(
-        timestamp: Time.new(1993, 3, 18, 9, 0, 0, 14_400), data: data,
+        timestamp: Time.parse('1993-03-18T09:00:00-04:00'), data: data,
       )
       stat2 = get_daily_report_datapoint_for_timestamp(
-        timestamp: Time.new(1993, 3, 18, 10, 0, 0, 14_400), data: data,
+        timestamp: Time.parse('1993-03-18T10:00:00-04:00'), data: data,
       )
 
       expect(stat1).to_not eq(nil)

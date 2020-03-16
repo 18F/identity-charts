@@ -1,8 +1,8 @@
 describe Reporter::AlbErrorsReportBuilder do
   # These reports are a pisces, just like me :)
-  let(:current_time) { Time.new(1993, 3, 18, 12) }
-  let(:report_start_time) { Time.new(1993, 3, 17, 12) }
-  let(:report_end_time) { Time.new(1993, 3, 18, 11, 55) }
+  let(:current_time) { Time.parse('1993-03-18T12:00:00') }
+  let(:report_start_time) { Time.parse('1993-03-17T12:00:00') }
+  let(:report_end_time) { Time.parse('1993-03-18T11:55:00') }
 
   around do |example|
     Timecop.freeze current_time do
@@ -14,18 +14,18 @@ describe Reporter::AlbErrorsReportBuilder do
   let(:get_metric_statistics_response_4xx) do
     GetMetricStatisticsResponse.new(
       [
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 17, 20), 10),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 17, 13), 20),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 18, 9), 30),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-17T20:00:00'), 10),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-17T13:00:00'), 20),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-18T09:00:00'), 30),
       ],
     )
   end
   let(:get_metric_statistics_response_5xx) do
     GetMetricStatisticsResponse.new(
       [
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 17, 20), 5),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 17, 14), 20),
-        GetMetricStatisticsDatapoint.new(Time.new(1993, 3, 18, 10), 30),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-17T20:00:00'), 5),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-17T14:00:00'), 20),
+        GetMetricStatisticsDatapoint.new(Time.parse('1993-03-18T10:00:00'), 30),
       ],
     )
   end
@@ -52,9 +52,15 @@ describe Reporter::AlbErrorsReportBuilder do
       expect(data.first[:label]).to eq(report_start_time.getlocal.strftime('%H:%M'))
       expect(data.last[:label]).to eq(report_end_time.getlocal.strftime('%H:%M'))
 
-      stat1 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 17, 20), data: data)
-      stat2 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 17, 13), data: data)
-      stat3 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 18, 9), data: data)
+      stat1 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-17T20:00:00'), data: data,
+      )
+      stat2 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-17T13:00:00'), data: data,
+      )
+      stat3 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-18T09:00:00'), data: data,
+      )
 
       expect(stat1).to_not eq(nil)
       expect(stat1[:value]).to eq(10)
@@ -73,9 +79,15 @@ describe Reporter::AlbErrorsReportBuilder do
       expect(data.first[:label]).to eq(report_start_time.getlocal.strftime('%H:%M'))
       expect(data.last[:label]).to eq(report_end_time.getlocal.strftime('%H:%M'))
 
-      stat1 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 17, 20), data: data)
-      stat2 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 17, 14), data: data)
-      stat3 = get_report_datapoint_for_timestamp(timestamp: Time.new(1993, 3, 18, 10), data: data)
+      stat1 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-17T20:00:00'), data: data,
+      )
+      stat2 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-17T14:00:00'), data: data,
+      )
+      stat3 = get_report_datapoint_for_timestamp(
+        timestamp: Time.parse('1993-03-18T10:00:00'), data: data,
+      )
 
       expect(stat1).to_not eq(nil)
       expect(stat1[:value]).to eq(5)
