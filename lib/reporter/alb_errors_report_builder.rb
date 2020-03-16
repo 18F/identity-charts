@@ -91,7 +91,7 @@ module Reporter
 
     def twenty_four_hours_ago
       @twenty_four_hours_ago ||= begin
-        time = 24.hours.ago
+        time = (TIME_ZONE.now - 24.hours)
         # We need to round to 5 minute increments since epoch
         # to get the right start date for the cloudwatch metrics
         TIME_ZONE.at(time.to_i - (time.to_i % 300))

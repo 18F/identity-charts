@@ -49,8 +49,8 @@ describe Reporter::AlbErrorsReportBuilder do
 
       expect(report[:name]).to eq(:alb_4xx_errors)
       expect(data.length).to eq(288)
-      expect(data.first[:label]).to eq(report_start_time.getlocal.strftime('%H:%M'))
-      expect(data.last[:label]).to eq(report_end_time.getlocal.strftime('%H:%M'))
+      expect(data.first[:label]).to eq(report_start_time.in_time_zone(TIME_ZONE).strftime('%H:%M'))
+      expect(data.last[:label]).to eq(report_end_time.in_time_zone(TIME_ZONE).strftime('%H:%M'))
 
       stat1 = get_report_datapoint_for_timestamp(
         timestamp: Time.parse('1993-03-17T20:00:00'), data: data,
@@ -76,8 +76,8 @@ describe Reporter::AlbErrorsReportBuilder do
 
       expect(report[:name]).to eq(:alb_5xx_errors)
       expect(data.length).to eq(288)
-      expect(data.first[:label]).to eq(report_start_time.getlocal.strftime('%H:%M'))
-      expect(data.last[:label]).to eq(report_end_time.getlocal.strftime('%H:%M'))
+      expect(data.first[:label]).to eq(report_start_time.in_time_zone(TIME_ZONE).strftime('%H:%M'))
+      expect(data.last[:label]).to eq(report_end_time.in_time_zone(TIME_ZONE).strftime('%H:%M'))
 
       stat1 = get_report_datapoint_for_timestamp(
         timestamp: Time.parse('1993-03-17T20:00:00'), data: data,
@@ -116,6 +116,6 @@ describe Reporter::AlbErrorsReportBuilder do
   end
 
   def get_report_datapoint_for_timestamp(timestamp:, data:)
-    data.find { |d| d[:label] == timestamp.getlocal.strftime('%H:%M') }
+    data.find { |d| d[:label] == timestamp.in_time_zone(TIME_ZONE).strftime('%H:%M') }
   end
 end

@@ -104,7 +104,7 @@ module Reporter
     end
 
     def one_week_ago
-      @one_week_ago ||= 1.week.ago.change(min: 0)
+      @one_week_ago ||= (TIME_ZONE.now - 1.week).change(min: 0)
     end
   end
 end
