@@ -1,0 +1,83 @@
+version: "2" # required to adjust maintainability checks
+checks:
+  argument-count:
+    config:
+      threshold: 4
+  complex-logic:
+    config:
+      threshold: 4
+  file-lines:
+    enabled: false
+  method-complexity:
+    config:
+      threshold: 15
+  method-count:
+    enabled: false
+  method-lines:
+    enabled: false
+  nested-control-flow:
+    config:
+      threshold: 4
+  return-statements:
+    config:
+      threshold: 4
+  similar-code:
+    enabled: false
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+  identical-code:
+    enabled: false
+    config:
+      threshold: # language-specific defaults. an override will affect all languages.
+
+plugins:
+  brakeman:
+    enabled: true
+    exclude_patterns:
+  bundler-audit:
+    enabled: true
+  coffeelint:
+    enabled: true
+  csslint:
+    enabled: true
+    exclude_patterns:
+  duplication:
+    enabled: true
+    config:
+      languages:
+        ruby:
+        javascript:
+          mass_threshold: 50
+    exclude_patterns:
+    - 'spec/**/*'
+    - 'db/schema.rb'
+  eslint:
+    enabled: true
+    exclude_patterns:
+  fixme:
+    enabled: true
+    exclude_patterns:
+    - '.codeclimate.yml'
+    config:
+      strings:
+      - TODO
+      - FIXME
+      - HACK
+      - BUG
+      - XXX
+  pep8:
+    enabled: true
+  reek:
+    enabled: false
+  rubocop:
+    enabled: true
+    channel: rubocop-0-72
+  scss-lint:
+    enabled: true
+    checks:
+      HexLength:
+        enabled: false
+
+exclude_patterns:
+  - 'node_modules/'
+  - 'tmp/'
