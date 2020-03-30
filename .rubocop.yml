@@ -1,10 +1,3 @@
-# This configuration only includes the cops that differ from the Rubocop
-# defaults, which can be found here:
-# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
-# https://github.com/bbatsov/rubocop/blob/master/config/enabled.yml
-# https://github.com/bbatsov/rubocop/blob/master/config/disabled.yml
-require: rubocop-rails
-
 AllCops:
   Exclude:
     - 'bin/**/*'
@@ -13,11 +6,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'tmp/**/*'
   TargetRubyVersion: 2.6
-  TargetRailsVersion: 5.1
   UseCache: true
-
-Rails:
-  Enabled: true
 
 Metrics/AbcSize:
   Description: A calculated magnitude based on number of assignments, branches, and
@@ -56,6 +45,7 @@ Metrics/LineLength:
   - http
   - https
   Exclude:
+    - 'config/routes.rb'
 
 Metrics/MethodLength:
   Description: Avoid methods longer than 10 lines of code.
@@ -78,33 +68,7 @@ Metrics/ModuleLength:
 Metrics/ParameterLists:
   CountKeywordArgs: false
 
-Naming/VariableName:
-  Exclude:
-
-Rails/HttpPositionalArguments:
-  Description: 'Use keyword arguments instead of positional arguments in http method calls.'
-  Enabled: true
-  Include:
-    - 'spec/**/*'
-    - 'test/**/*'
-
-# temporarily disabled until the fix for https://github.com/bbatsov/rubocop/issues/4249
-# is available in a new release
-Rails/RelativeDateConstant:
-  Enabled: false
-
-Rails/TimeZone:
-  # The value `strict` means that `Time` should be used with `zone`.
-  # The value `flexible` allows usage of `in_time_zone` instead of `zone`.
-  Description: 'Checks the correct usage of time zone aware methods.'
-  StyleGuide: 'https://github.com/bbatsov/rails-style-guide#time'
-  Enabled: true
-  EnforcedStyle: strict
-  SupportedStyles:
-    - strict
-    - flexible
-
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   # Alignment of parameters in multi-line method calls.
   #
   # The `with_first_parameter` style aligns the following lines along the same
@@ -184,7 +148,7 @@ Style/IfUnlessModifier:
   Enabled: true
 
 # Checks the indentation of the first element in an array literal.
-Layout/IndentFirstArrayElement:
+Layout/FirstArrayElementIndentation:
   # The value `special_inside_parentheses` means that array literals with
   # brackets that have their opening bracket on the same line as a surrounding
   # opening round parenthesis, shall have their first element indented relative
@@ -271,7 +235,7 @@ Style/TrailingCommaInHashLiteral:
     - consistent_comma
     - no_comma
 
-Naming/UncommunicativeMethodParamName:
+Naming/MethodParameterName:
   MinNameLength: 2
 
 Style/ExpandPathArguments:
