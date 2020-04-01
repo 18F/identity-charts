@@ -4,10 +4,6 @@ require 'sinatra/reloader'
 
 require_relative './lib/models/report'
 
-
-
-
-
 class App < Sinatra::Base
   CHARTS = %i[authentications alb_errors doc_auth].freeze
 
@@ -57,8 +53,4 @@ class App < Sinatra::Base
   def host_name
     ENV['HOST_NAME']
   end
-
 end
-
-
-
