@@ -33,14 +33,14 @@ checks:
 plugins:
   brakeman:
     enabled: true
-    exclude_patterns:
+    exclude_patterns: []
   bundler-audit:
     enabled: true
   coffeelint:
     enabled: true
   csslint:
     enabled: true
-    exclude_patterns:
+    exclude_patterns: []
   duplication:
     enabled: true
     config:
@@ -53,7 +53,7 @@ plugins:
     - 'db/schema.rb'
   eslint:
     enabled: true
-    exclude_patterns:
+    exclude_patterns: []
   fixme:
     enabled: true
     exclude_patterns:
