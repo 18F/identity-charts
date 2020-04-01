@@ -31,9 +31,6 @@ checks:
       threshold: # language-specific defaults. an override will affect all languages.
 
 plugins:
-  brakeman:
-    enabled: true
-    exclude_patterns: []
   bundler-audit:
     enabled: true
   coffeelint:
